@@ -1,0 +1,29 @@
+// Layout  
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+.logo {
+  width: 240px;
+}

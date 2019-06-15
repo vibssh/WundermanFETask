@@ -1,0 +1,75 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:400, 700');
+
+// Font Variables
+$base-font-family: 'Roboto', sans-serif;
+$base-font-weight: 400;
+$bold-font-weight: 700;
+
+// Line Heights
+$line-height: 1.25;
+
+// Font-sizes 
+$font-size-base: 16px;
+
+$font-size-h1: 36px;
+$font-size-h2: 24px;
+$font-size-h3: 19px;
+$font-size-h4: 16px;
+
+// Zero off all margins from text elements 
+:global{
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    ul,
+    ol,
+    li {
+    font-weight: $base-font-weight;
+    margin: 0;
+    }
+  }
+
+body {
+  @include remsize(font-size, $font-size-base);
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+}
+
+// Paragraph Styles - p tag 
+p {
+  @include remsize(font-size, $font-size-base);
+  line-height: $line-height;
+  margin-bottom: 15px;
+  }
+
+// Headings
+h1 {
+    @include remsize(font-size, $font-size-h1);
+    font-weight: $bold-font-weight;
+    line-height: $line-height;
+    margin-bottom: 30px;
+  }
+
+h2 {
+    @include remsize(font-size, $font-size-h2);
+    font-weight: $bold-font-weight;
+    line-height: $line-height;
+    margin-bottom: 20px;
+  }
+
+h3 {
+    @include remsize(font-size, $font-size-h3);
+    font-weight: $bold-font-weight;
+    line-height: $line-height;
+    margin-bottom: 15px;  
+  }
+
+h4 {
+    @include remsize(font-size, $font-size-h4);
+    line-height: $line-height;
+    margin-bottom: 15px;
+  }
+    

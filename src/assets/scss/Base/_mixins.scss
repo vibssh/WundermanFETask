@@ -1,0 +1,11 @@
+/* Mixins and Functions */
+
+// PX to REM
+$base-font-size: 16px;
+@mixin remsize($prop, $px, $base: $base-font-size) {
+  #{$prop}: $px;
+  #{$prop}: ($px / $base) * 1rem;
+  //
+  //Usage :
+  // @include remsize(font-size, 20px);
+}
