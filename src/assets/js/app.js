@@ -101,7 +101,7 @@ import axios from 'axios';
     //Loader gif display
     settings.loader.style.display = "block"; 
 
-
+    //Click Even on the Trigger
     settings.accordionContainer.addEventListener('click', function (event) {
       event.stopPropagation();
       if(!event.target.matches('.accordion-trigger')) return;

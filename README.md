@@ -11,9 +11,8 @@ To run the app in the development mode. you can run this from the root of the pr
 
 The page will reload if you make edits. All edits need to be done in the 'src' folder <br>
 
-If you don't want to make any development changes and just want to browse the project you can deploy the 'dist' folder contents to your local or production server. 
+If you don't want to make any development changes and just want to browse the project you can deploy the 'dist' folder contents to your local or production server or launch the application from your file explorer by clicked on the 'index.html' file within the dist folder. 
 
-It's best to run the project from the local or production server to get optimum results as it uses fetching of data which requires a http protocol instead of browsing as a file 'file://xyz'
 
 ## Author
 
