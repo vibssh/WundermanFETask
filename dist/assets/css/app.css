@@ -149,6 +149,8 @@ img { max-width: 100%; }
 
 .no-script { display: block; margin: 0 auto; text-align: center; }
 
+#loader { display: none; margin: 0 auto; text-align: center; width: 150px; }
+
 header { display: block; margin: 0 auto; padding: 10px; text-align: center; width: 100%; }
 
 header .logo { margin: 0 auto; text-align: center; width: 240px; }

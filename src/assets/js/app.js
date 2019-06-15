@@ -13,7 +13,8 @@ import axios from 'axios';
     accordionContainer: document.querySelector('#accordion'),
     accordionTrigger: document.querySelector('.accordion-trigger'),
     accordionPanel: document.querySelector('.accordion-panel'),
-    apiURL: 'https://api.myjson.com/bins/jw3rg'
+    apiURL: 'https://api.myjson.com/bins/jw3rg',
+    loader: document.querySelector('#loader')
   }
 
   
@@ -56,14 +57,51 @@ import axios from 'axios';
     //Get Accordion Created
       const accordion = constructAccordion(d);
 
+      //Remove Loader Gif 
+      settings.loader.style.display = "none";
+
       //Inject Accordion into the DOM
-      settings.accordionContainer.innerHTML += accordion
+      settings.accordionContainer.innerHTML += accordion;
+
+      //Making first Accordion Visible
+      firstElementVisible();
+
+
     })
   }
 
+  //Set First Element of the accordion to expanded on load
+  const firstElementVisible = function() {
+    const parent = document.querySelector('#accordion');
+    const firstChild = parent.children[0];
+    const firstTrigger = firstChild.childNodes[1].childNodes[1];
+    firstTrigger.setAttribute('aria-expanded', 'true');
+    const dataAttribute = firstTrigger.getAttribute('data-trigger');
+    //panel
+    panelToggle(firstTrigger, dataAttribute)
+  }
+
+  //Panel Toggle
+  const panelToggle = function (trigger, dataAttrib) {  
+    const allPanels = document.querySelectorAll('[data-panel]');
+    const currentTrigger = trigger.getAttribute('aria-expanded');
+    const currentPanel = document.querySelector('[data-panel="'+ dataAttrib +'"]');
+
+    allPanels.forEach(function(p) {
+      p.setAttribute('hidden', true)
+    })
+
+    if(currentTrigger === 'true'){
+      currentPanel.removeAttribute('hidden')
+    } 
+  }
 
   //Add EventListeners 
   const bindUIActions = function() {
+    //Loader gif display
+    settings.loader.style.display = "block"; 
+
+
     settings.accordionContainer.addEventListener('click', function (event) {
       event.stopPropagation();
       if(!event.target.matches('.accordion-trigger')) return;
@@ -89,19 +127,7 @@ import axios from 'axios';
       event.target.setAttribute('aria-expanded', ariaExpanded)
 
       //Panel
-      const allPanels = document.querySelectorAll('[data-panel]');
-      const currentTrigger = event.target.getAttribute('aria-expanded');
-      const currentPanel = document.querySelector('[data-panel="'+ dataAttrib +'"]');
-
-      allPanels.forEach(function(p) {
-        p.setAttribute('hidden', true)
-      })
-
-      if(currentTrigger === 'true'){
-        currentPanel.removeAttribute('hidden')
-      } 
-      
-
+      panelToggle(event.target, dataAttrib)
       
 
     },false)
@@ -112,11 +138,7 @@ import axios from 'axios';
     bindUIActions();
   }
 
-
-
   init();
-  
-
-
+ 
 
 }());
