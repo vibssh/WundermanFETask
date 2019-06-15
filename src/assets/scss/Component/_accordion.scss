@@ -20,25 +20,38 @@
   border-radius: 10px;
   border-right: 0;
   border-top: 0;
+  cursor: pointer;
   overflow: hidden;  
   padding: 10px;  
   text-align: left;
   width: 100%;
 
-  span {
-    display: inline-block;
-  }
+  
 }
 
 .button-text {
   color: $primary-color;
+  display: inline-block;
   float: left;
 
 }
 
 .button-icon {
   color: $primary-color;
+  display: inline-block;
   float: right;
+
+  &:after {
+    content: "[+]";
+  };
+
+  &.active {
+    &:after {
+      content: "[--]";
+
+
+    };
+  }
 }
 
 .accordion-panel {
