@@ -147,6 +147,8 @@ img { max-width: 100%; }
 
 .sub-title { font-size: 18px; font-size: 1.125rem; margin-bottom: 30px; margin-top: 0; }
 
+.no-script { display: block; margin: 0 auto; text-align: center; }
+
 header { display: block; margin: 0 auto; padding: 10px; text-align: center; width: 100%; }
 
 header .logo { margin: 0 auto; text-align: center; width: 240px; }
