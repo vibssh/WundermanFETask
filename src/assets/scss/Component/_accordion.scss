@@ -1,1 +1,55 @@
 // Component - Accordion
+
+.accordion-wrapper {
+  border: 2px solid #999;
+  border-bottom: 0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.accordion-trigger {
+  -webkit-appearance: none;
+  background-color: $secondary-color;
+  border: 0;
+  border: 2px solid #999;
+  border-left: 0;
+  border-radius: 10px;
+  border-right: 0;
+  border-top: 0;
+  overflow: hidden;  
+  padding: 10px;  
+  text-align: left;
+  width: 100%;
+
+  span {
+    display: inline-block;
+  }
+}
+
+.button-text {
+  color: $primary-color;
+  float: left;
+
+}
+
+.button-icon {
+  color: $primary-color;
+  float: right;
+}
+
+.accordion-panel {
+  border-bottom: 2px solid #999;
+  border-radius: 10px;
+  
+  
+  p {
+    display: block;
+    margin-top: 0;
+    padding: 10px;
+    width: 100%;
+  }
+}

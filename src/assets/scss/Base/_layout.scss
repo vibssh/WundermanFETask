@@ -20,10 +20,43 @@ html, body {
   width: 100%;
 }
 
+
+section {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex-grow: 1;
+}
+
+header, main, footer {
+  flex-shrink: 0;
+}
+
+
+footer p {
+  @include remsize(font-size, 14px);
+  color: $primary-color;
+  text-align: center;
+}
+
 img {
   max-width: 100%;
 }
 
 .logo {
   width: 240px;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+.sub-title {
+  @include remsize(font-size, 18px);
+  margin-bottom: 30px;
+  margin-top: 0;
 }
