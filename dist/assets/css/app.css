@@ -157,13 +157,13 @@ header .logo { margin: 0 auto; text-align: center; width: 240px; }
 
 .accordion-trigger { -webkit-appearance: none; background-color: #00d1d9; border: 0; border: 2px solid #999; border-left: 0; border-radius: 10px; border-right: 0; border-top: 0; cursor: pointer; overflow: hidden; padding: 10px; text-align: left; width: 100%; }
 
-.button-text { color: #0a47ed; display: inline-block; float: left; }
+.accordion-trigger[aria-expanded=true] .button-icon:after { content: "[--]"; }
 
-.button-icon { color: #0a47ed; display: inline-block; float: right; }
+.accordion-trigger[aria-expanded=false] .button-icon:after { content: "[+]"; }
 
-.button-icon:after { content: "[+]"; }
+.button-text { color: #0a47ed; display: inline-block; pointer-events: none; vertical-align: middle; width: 88%; }
 
-.button-icon.active:after { content: "[--]"; }
+.button-icon { color: #0a47ed; display: inline-block; pointer-events: none; text-align: right; vertical-align: middle; width: 10%; }
 
 .accordion-panel { border-bottom: 2px solid #999; border-radius: 10px; }
 

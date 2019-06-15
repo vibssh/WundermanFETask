@@ -25,34 +25,44 @@
   padding: 10px;  
   text-align: left;
   width: 100%;
-
   
+
+  &[aria-expanded = true] {
+    .button-icon {
+      &:after {
+        content: "[--]";
+      };
+    }
+  }
+
+  &[aria-expanded = false] {
+    .button-icon {
+      &:after {
+        content: "[+]";
+      };
+    }
+  }
 }
 
 .button-text {
   color: $primary-color;
   display: inline-block;
-  float: left;
-
+  pointer-events: none;
+  vertical-align: middle;
+  width: 88%;
 }
 
 .button-icon {
   color: $primary-color;
   display: inline-block;
-  float: right;
-
-  &:after {
-    content: "[+]";
-  };
-
-  &.active {
-    &:after {
-      content: "[--]";
-
-
-    };
-  }
+  pointer-events: none;
+  text-align: right;
+  vertical-align: middle;
+  width: 10%;
 }
+
+
+
 
 .accordion-panel {
   border-bottom: 2px solid #999;

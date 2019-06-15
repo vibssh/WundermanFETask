@@ -12,74 +12,103 @@ import axios from 'axios';
   const settings = {
     accordionContainer: document.querySelector('#accordion'),
     accordionTrigger: document.querySelector('.accordion-trigger'),
-    accordionPanel: document.querySelector('.accordion-panel')
+    accordionPanel: document.querySelector('.accordion-panel'),
+    apiURL: 'https://api.myjson.com/bins/jw3rg'
   }
 
   
   //Construct Accordion Here
-  const constructAccordion = function() {
+  const constructAccordion = function(data) {
     return (
        `<div class="accordion-wrapper">
             <h3>
-              <button class="accordion-trigger" aria-expanded="false" aria-control="accordion-0" data-trigger="accordion-0">
-                <span class="button-text" data-trigger="accordion-0">
-                  Q:What is Wunderman Thomson Commerce about?
+              <button class="accordion-trigger" aria-expanded="false" aria-control="accordion-${data.id}" data-trigger="accordion-${data.id}">
+                <span class="button-text" data-trigger="accordion-${data.id}">
+                  Q:${data.question}
                 </span>
-                <span class="button-icon" data-trigger="accordion-0"></span>
+                <span class="button-icon" data-trigger="accordion-${data.id}"></span>
               </button>
             </h3> 
             
-            <div class="accordion-panel" role="region" aria-labelledby="accordion-0" data-panel="accordion-0" hidden>
-              <p>Building great sites for our clients. Simple</p>
+            <div class="accordion-panel" role="region"  aria-labelledby="accordion-${data.id}" data-panel="accordion-${data.id}" hidden>
+              <p>${data.answer}</p>
             </div>
           </div> `
       )
   }
 
 
+  //Get Dynamic Data from API
+  const getData = function () {
+    axios.get(settings.apiURL)
+      .then(function(response) {
+        const faqs = response.data.faqs; // Get all Faqs
+        dataLooper(faqs);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  }
+
+  //Loop over the data and create Accordion
+  const dataLooper = function(data) {
+    data.forEach(function (d) {
+    //Get Accordion Created
+      const accordion = constructAccordion(d);
+
+      //Inject Accordion into the DOM
+      settings.accordionContainer.innerHTML += accordion
+    })
+  }
+
 
   //Add EventListeners 
   const bindUIActions = function() {
-    settings.accordionContainer.addEventListener('click', function (addEventListener) {
-      if(!event.target.hasAttribute('data-trigger')) return;
+    settings.accordionContainer.addEventListener('click', function (event) {
+      event.stopPropagation();
+      if(!event.target.matches('.accordion-trigger')) return;
       
+      //Accordion Trigger
       const allTriggers = document.querySelectorAll('[data-trigger]');
-      const allPanels = document.querySelectorAll('[data-panel]');
+      const dataAttrib = event.target.getAttribute('data-trigger');  
+      let ariaExpanded = event.target.getAttribute('aria-expanded');
 
-
-
-      allTriggers.forEach(function(trigger) {
-        const dataAttrib = trigger.getAttribute('data-trigger');
-
-        //Accordion Trigger
-        const activeTrigger = document.querySelector('[data-trigger="'+dataAttrib+'"]'); 
-        
-        if(!activeTrigger) {
-          //Remove activeClass from all triggers
-          trigger.classList.remove('active');  
+      //Toggling the Aria-expanded attribute
+      if(ariaExpanded === 'true') {
+          ariaExpanded = 'false'
         } else {
-          //Toggle Active Class on clicked Trigger
-          trigger.classList.toggle('active');  
-        }
-        
-        //Accordion Panel
-        allPanels.forEach(function(panel) {
-          //panel.hidden = true;
-          const activeDataPanel = document.querySelector('[data-panel="'+dataAttrib+'"]');
-          
-          if(!activeDataPanel) {
-            panel.hidden = true;
-          } else {
-            activeDataPanel.toggleAttribute('hidden');   
-          }        
-        });
-      });
+          ariaExpanded = 'true'
+      }
+      
+      //setting all Triggers to Aria-Expanded false
+      allTriggers.forEach(function(t) {
+        t.setAttribute('aria-expanded', 'false');
+      })
+
+      // Clicked Accordion Trigger
+      event.target.setAttribute('aria-expanded', ariaExpanded)
+
+      //Panel
+      const allPanels = document.querySelectorAll('[data-panel]');
+      const currentTrigger = event.target.getAttribute('aria-expanded');
+      const currentPanel = document.querySelector('[data-panel="'+ dataAttrib +'"]');
+
+      allPanels.forEach(function(p) {
+        p.setAttribute('hidden', true)
+      })
+
+      if(currentTrigger === 'true'){
+        currentPanel.removeAttribute('hidden')
+      } 
+      
+
+      
+
     },false)
   }
 
-  const init = () => {
-    const accordion = constructAccordion();
-    settings.accordionContainer.innerHTML += accordion
+  const init = () => {    
+    getData();
     bindUIActions();
   }
 
