@@ -6,7 +6,7 @@ In the project directory, after cloning the project, you must run:
 
 ### `npm install`
 
-This command will install required node dependcy modules on your local system. Please note you will need to have NODEJS installed on your local machine. Instructions to install can be found on [https://nodejs.org/en/](https://nodejs.org/en/)
+This command will install required node dependency modules on your local system. Please note you will need to have NODEJS installed on your local machine. Instructions to install can be found on [https://nodejs.org/en/](https://nodejs.org/en/)
 
 To run the app in the development mode. you can run this from the root of the project folder
 
